@@ -5,4 +5,20 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>romantic-wednesdays</name>
   <description>https://www.instagram.com/quartas_romanticas/</description>
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>romantic.wednesdays.Main</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 </project>

@@ -13,17 +13,17 @@ public class Main {
 	
 	public static Set<Integer> participants = new HashSet<Integer>();
 	
-	public static int MAX_SHUFFLE_ATTEMPTS = 100;
+	public static int MAX_SHUFFLE_ATTEMPTS = 10000;
 
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("\n===== MENU =====");
-            System.out.println("1. Enter all participants");
-            System.out.println("2. Generate the participant pairs");
-            System.out.println("3. Add participant");
-            System.out.println("4. Remove participant");
+            System.out.println("1. Enter all romantics");
+            System.out.println("2. Generate the romantics pairs");
+            System.out.println("3. Add a romantic");
+            System.out.println("4. Remove a romantic");
             System.out.println("5. Exit");
             System.out.print("Choose an option: ");
             String input;
@@ -55,7 +55,7 @@ public class Main {
                     break;
                 
                 case 3:
-                	System.out.print("\nNumber of the participant: ");
+                	System.out.print("\nNumber of the romantic: ");
                 	input = scanner.nextLine();
                 	try {
                 		participants.add(Integer.parseInt(input));
@@ -65,7 +65,7 @@ public class Main {
                     }
                     break;
                 case 4:
-                	System.out.print("\nNumber of the participant: ");
+                	System.out.print("\nNumber of the romantic: ");
                 	input = scanner.nextLine();
                 	try {
                 		participants.remove(Integer.parseInt(input));
@@ -75,7 +75,7 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.println("Exiting program. Goodbye!");
+                    System.out.println("Goodbye romantics! Until next time!");
                     scanner.close();
                     return;
 
@@ -89,8 +89,10 @@ public class Main {
 	
 	 public static String getPairings(List<Integer> participantsList) {
 	        int attempts = 0;
+	        
+	        int maxAttempts = MAX_SHUFFLE_ATTEMPTS * participantsList.size();
 
-	        while (attempts < MAX_SHUFFLE_ATTEMPTS) {
+	        while (attempts < maxAttempts) {
 	            Set<Pair> newPairs = new HashSet<>();
 	            StringBuilder buildPairs = new StringBuilder();
 	            Collections.shuffle(participantsList);
@@ -108,16 +110,16 @@ public class Main {
 
 	            if (validPairing) {
 	                if (participantsList.size() % 2 != 0) {
-	                    buildPairs.append(" + Number ").append(participantsList.get(participantsList.size() - 1));
+	                    buildPairs.append(" + Romantic ").append(participantsList.get(participantsList.size() - 1));
 	                }
 	                repeatedNumbers.addAll(newPairs);
-	                return buildPairs.toString();
+	                return buildPairs.append("\n").toString();
 	            }
 
 	            attempts++;
 	        }
 
-	        return "Could not find unique pairings after " + MAX_SHUFFLE_ATTEMPTS + " attempts.";
+	        return "Could not find unique pairings after " + maxAttempts + " attempts.";
 	    }
 
 }

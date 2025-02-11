@@ -39,7 +39,7 @@ public class Pair {
 
 	@Override
 	public String toString() {
-		return "Pair [" + value1 + "-" + value2 + "]";
+		return "Romantics [" + value1 + "-" + value2 + "]";
 	}
 
 	@Override
